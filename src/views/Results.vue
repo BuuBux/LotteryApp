@@ -1,12 +1,6 @@
 <template>
   <container-component>
-    <row-container>
-      <draw-result-component
-        class="my-3 h-100 col-4"
-        :draw="draw"
-        :key="draw"
-        v-for="draw in draws" />
-    </row-container>
+    <draw-result-component />
   </container-component>
 </template>
 
@@ -23,17 +17,6 @@ export default defineComponent({
     RowContainer,
     ContainerComponent,
     DrawResultComponent,
-  },
-  props: {
-    draws: {
-      type: Array,
-      required: true,
-    },
-  },
-  setup(_, ctx) {
-    const route = ctx.root.$route;
-    const { draw } = route.query;
-    console.log(draw);
   },
 });
 </script>

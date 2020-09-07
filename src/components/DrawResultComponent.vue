@@ -1,58 +1,51 @@
 <template>
-  <div class="section">
-    <b-card
-      class="h-100"
-      :key="`${draw.date.toLowerCase().split(' ').join('')}${draw.numbers.join()}}`"
-      v-for="draw in this.result.draw.draws">
-      <b-card-header> {{ draw.seo.title }} </b-card-header>
-      <b-card-text>
-        <div class="">
-          <p> {{ draw.numbers.join(' ') }} </p>
-        </div>
-      </b-card-text>
-      <b-card-footer> {{ draw.date }} </b-card-footer>
-    </b-card>
-  </div>
+  <row-component>
+    <div class="aside col-4">
+      <div class="c-dates__wrapper">
+        <ul>
+          <li> dates </li>
+        </ul>
+      </div>
+    </div>
+    <div class="content col-8">
+      <div class="c-content__wrapper">
+        results!
+      </div>
+    </div>
+  </row-component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 import { useQuery } from '@vue/apollo-composable';
-import { GET_DRAWS_RESULTS } from '@/schemas/queries';
+import { GET_DRAWS_RESULTS, GET_DRAWS_DATE } from '@/schemas/queries';
 
 export default defineComponent({
   name: 'DrawResult',
-  props: {
-    draw: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props, ctx) {
-    const { draw } = ctx.root.$route.query;
-    const date = '';
-    const limit = 1;
+  setup() {
+    const type = 'eurojackpot';
+    const dateLimit = 10;
 
-    if (draw) {
-      const { result, loading, error } = useQuery(
-        GET_DRAWS_RESULTS, {
-          date,
-          limit,
-          type: draw,
-        },
-      );
-      return { result, loading, error };
-    }
+    const {
+      result: dateResults,
+      loading: dateLoading,
+      error: dateError,
+    } = useQuery(GET_DRAWS_DATE, { limit: 1, type });
 
-    const { draw: drawLottery } = props;
-    const { result, loading, error } = useQuery(
-      GET_DRAWS_RESULTS, {
-        date,
-        limit,
-        type: drawLottery,
-      },
-    );
-    return { result, loading, error };
+    const {
+      result: drawsResults,
+      loading: drawsLoading,
+      error: drawsError,
+    } = useQuery(GET_DRAWS_RESULTS, { date: dateResults, limit: dateLimit, type });
+
+    return {
+      dateResults,
+      dateLoading,
+      dateError,
+      drawsResults,
+      drawsLoading,
+      drawsError,
+    };
   },
 });
 
