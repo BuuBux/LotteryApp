@@ -22,7 +22,7 @@
 import {
   defineComponent, Ref, ref, watch,
 } from '@vue/composition-api';
-import { sun, moon } from '@/assets/images';
+import { sun, moon } from '@/assets/icons';
 
 export default defineComponent({
   name: 'Navigation',

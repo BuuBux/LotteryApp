@@ -14,8 +14,9 @@ export default defineComponent({
 
 <style scoped lang="scss">
  .row {
-   display: flex;
-   margin-left: -15px;
-   margin-right: -15px;
- }
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
 </style>

@@ -1,21 +1,24 @@
-$fontFamily: Lato, sans-serif;
+$fontFamily: 'Montserrat Alternates', sans-serif;
+$fontFamilySecondary: 'Pacifico', cursive;
 
 @function chooseBoldSize($fontBold) {
   @if ($fontBold == 'light') {
     @return 300;
-  } @else if ($fontBold == 'bold'){
+  } @else if ($fontBold == 'bold') {
     @return 700;
+  } @else if ($fontBold == 'extra') {
+    @return 900;
   }
   @return 400;
 }
 
-@function font($size, $height, $weight: 'normal') {
-  $baseSize: 1rem;
+@function font($size, $height, $weight: 'normal', $family: $fontFamily) {
+  $baseSize: 16;
 
   $font: $size / $baseSize;
   $lineHeight: $height / $baseSize;
 
-  $result: chooseBoldSize($weight) unquote(" #{font}rem / #{lineHeight}rem") $fontFamily;
+  $result: chooseBoldSize($weight) unquote(" #{$font}rem / #{$lineHeight}rem") $family;
 
   @return $result;
 }

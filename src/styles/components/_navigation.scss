@@ -15,6 +15,12 @@
     z-index: $low-index;
     overflow: hidden;
     display: inline-block;
+    font: font(24, 32, 'bold');
+    &.router-link-exact-active {
+      &:before {
+        transform: translateX(0);
+      }
+    }
     &:before, &:after {
       content: '';
       position: absolute;
@@ -27,7 +33,7 @@
       transition: transform 0.2s ease-in-out;
     }
     &:before {
-      transform: translateX(-100%);
+      transform: translateX(-101%);
       height: 3px;
     }
     &:after {
@@ -35,12 +41,8 @@
       transform: translateY(-100%);
     }
     &:hover {
-      &:before {
-        transform: translateX(0);
-      }
-      &:after {
-        transform: translateY(0);
-      }
+      &:before { transform: translateX(0); }
+      &:after { transform: translateY(0); }
     }
   }
   &__item {
@@ -59,5 +61,18 @@
         transition: transform 0.3s ease-in-out;
       }
     }
+  }
+}
+
+.theme {
+  &.dark {
+    .c-nav {
+      &__link {
+        transition: color 0.2s ease-in-out;
+        &:hover {
+          color: $dark;
+        }
+      }
+    }   
   }
 }

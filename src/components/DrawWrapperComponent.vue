@@ -1,14 +1,21 @@
 <template>
-  <container-component class="c-draw__wrapper">
+  <container-component class="c-lottery__wrapper">
     <row-component>
+      <draw-information-component />
+      <router-link to="/result" class="c-btn"> Show me result </router-link>
     </row-component>
   </container-component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
+import DrawInformationComponent from '@/components/DrawInformationComponent.vue';
 
 export default defineComponent({
+  name: 'DrawWrapperComponent',
+  components: {
+    DrawInformationComponent,
+  },
 });
 </script>
 

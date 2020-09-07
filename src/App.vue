@@ -22,7 +22,6 @@ export default defineComponent({
   setup() {
     const theme: Ref<string> = ref('light');
     const toggleTheme = (value: string) => {
-      console.log('odbieram wartość', value);
       theme.value = value;
     };
     return { theme, toggleTheme };
@@ -39,26 +38,32 @@ export default defineComponent({
 }
 
 #app {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: $fontFamily;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $gray;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.light {
+  background: $gray;
   color: $dark;
-  &.dark {
+}
+
+.dark {
     background: $dark;
     color: $dark-font;
     a {
       color: $dark-font;
     }
   }
-}
 
 .main {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 a {

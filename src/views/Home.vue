@@ -1,5 +1,5 @@
 <template>
-  <section class="c-section__wrapper">
+  <section class="c-home__wrapper">
     <home-content-component />
   </section>
 </template>
@@ -17,8 +17,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-  .c-section {
-    &__wrapper {
-    }
+  .c-home__wrapper {
+    @include centering;
   }
 </style>
