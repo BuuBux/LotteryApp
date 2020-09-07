@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 c-information__wrapper">
+  <div class="col-12 c-information__wrapper c-panel">
     <row-component>
       <div class="col-12">
         <h3 class="c-information__header"> Lottery information </h3>
@@ -9,7 +9,7 @@
         <div
         v-for="information in informations"
         :key="information.title"
-        class="col-3 c-information__item">
+        class="col-6 c-information__item">
         <img
           class="c-information__image"
           :alt="information.title"
@@ -57,25 +57,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .dark {
-    .c-information {
-      &__wrapper {
-        background: #000;
-      }
-    }
-  }
-  .light {
-    .c-information {
-      &__wrapper {
-        background: #fff;
-      }
-    }
-  }
   .c-information {
     &__wrapper {
-      padding: 25px;
-      box-shadow: 0 4px 12px 3px rgba(#000, 0.1);
-      @include border-radius(14px);
       text-align: center;
     }
     &__header {
@@ -86,6 +69,9 @@ export default defineComponent({
     &__image, &__title {
       margin: 0 0 10px;
     }
-
+    &__item {
+      margin: 15px 0;
+      @include make-col($grid, 3);
+    }
   }
 </style>

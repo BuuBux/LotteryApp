@@ -7,7 +7,6 @@ export const GET_DRAWS_DATE = gql`
       draws
       {
         date
-        time
       }
     }
   }

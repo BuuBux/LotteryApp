@@ -1,56 +1,52 @@
 <template>
   <row-component>
-    <div class="aside col-4">
-      <div class="c-dates__wrapper">
-        <ul>
-          <li> dates </li>
-        </ul>
-      </div>
+    <div class="aside col-12">
+      <draw-dates-component @selectedDate="updateDate" :type="lotteryType" />
     </div>
-    <div class="content col-8">
-      <div class="c-content__wrapper">
-        results!
-      </div>
+    <div class="main-content col-12">
+      <show-draw-result-component :type="lotteryType" :selected-date="selectedDate" />
     </div>
   </row-component>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
-import { useQuery } from '@vue/apollo-composable';
-import { GET_DRAWS_RESULTS, GET_DRAWS_DATE } from '@/schemas/queries';
+import { defineComponent, ref, Ref } from '@vue/composition-api';
+import ShowDrawResultComponent from '@/components/ShowDrawResultComponent.vue';
+import DrawDatesComponent from '@/components/DrawDatesComponent.vue';
 
 export default defineComponent({
   name: 'DrawResult',
+  components: {
+    DrawDatesComponent,
+    ShowDrawResultComponent,
+  },
   setup() {
-    const type = 'eurojackpot';
-    const dateLimit = 10;
-
-    const {
-      result: dateResults,
-      loading: dateLoading,
-      error: dateError,
-    } = useQuery(GET_DRAWS_DATE, { limit: 1, type });
-
-    const {
-      result: drawsResults,
-      loading: drawsLoading,
-      error: drawsError,
-    } = useQuery(GET_DRAWS_RESULTS, { date: dateResults, limit: dateLimit, type });
-
-    return {
-      dateResults,
-      dateLoading,
-      dateError,
-      drawsResults,
-      drawsLoading,
-      drawsError,
+    const lotteryType = 'eurojackpot';
+    const selectedDate: Ref<string> = ref('');
+    const updateDate = (value: string) => {
+      selectedDate.value = value;
     };
+    return { lotteryType, selectedDate, updateDate };
   },
 });
 
 </script>
 
 <style scoped lang="scss">
-
+  .main-content {
+    margin-top: 25px;
+  }
+  @media (min-width: 768px) {
+    .aside {
+      &.col-12 {
+        @include make-col($grid, 5);
+      }
+    }
+    .main-content {
+      margin-top: 0;
+      &.col-12 {
+        @include make-col($grid, 7);
+      }
+    }
+  }
 </style>

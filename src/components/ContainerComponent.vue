@@ -18,6 +18,7 @@ export default defineComponent({
     padding-right: 15px;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
     @each $breakpoint, $grid-breakpoint in $grid-breakpoints {
       @media (min-width: $grid-breakpoint) {
         max-width: make-container($breakpoint, $container-max-widths);

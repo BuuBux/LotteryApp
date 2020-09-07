@@ -1,12 +1,20 @@
 .c-nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+  margin: 15px 0;
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+  }
   &__list {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     list-style: none;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
   }
   &__link {
     text-decoration: none;
@@ -46,10 +54,17 @@
     }
   }
   &__item {
-    &:not(:first-child) {
-      margin-left: 15px;
+    @media (min-width: 768px) {
+      &:not(:first-child) {
+        margin-left: 15px;
+      }
     }
     &--switch {
+      @media (max-width: 767px) {
+        position: absolute;
+        left: 15px;
+        top: -115px;
+      }
       &:hover {
         cursor: pointer;
         img {
@@ -73,6 +88,6 @@
           color: $dark;
         }
       }
-    }   
+    }
   }
 }
