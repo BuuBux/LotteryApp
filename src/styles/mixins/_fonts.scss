@@ -1,0 +1,25 @@
+$fontFamily: Lato, sans-serif;
+
+@function chooseBoldSize($fontBold) {
+  @if ($fontBold == 'light') {
+    @return 300;
+  } @else if ($fontBold == 'bold'){
+    @return 700;
+  }
+  @return 400;
+}
+
+@function font($size, $height, $weight: 'normal') {
+  $baseSize: 1rem;
+
+  $font: $size / $baseSize;
+  $lineHeight: $height / $baseSize;
+
+  $result: chooseBoldSize($weight) unquote(" #{font}rem / #{lineHeight}rem") $fontFamily;
+
+  @return $result;
+}
+
+p {
+  margin: 0;
+}

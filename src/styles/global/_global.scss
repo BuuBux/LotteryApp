@@ -1,0 +1,33 @@
+$gray: #efefef;
+$golden: #d99e14;
+$dark: #202020;
+$lemon: #84dd63;
+$dark-font: #cecece;
+
+$low-index: 10;
+$medium-index: 100;
+$high-index: 1000;
+
+$grid: 12;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}

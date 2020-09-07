@@ -1,32 +1,68 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="theme" :class="theme" id="app">
+    <header-component @theme="toggleTheme" />
+    <div class="main">
+      <router-view/>
     </div>
-    <router-view/>
+    <footer-component />
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent, ref, Ref } from '@vue/composition-api';
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    HeaderComponent,
+    FooterComponent,
+  },
+  setup() {
+    const theme: Ref<string> = ref('light');
+    const toggleTheme = (value: string) => {
+      console.log('odbieram wartość', value);
+      theme.value = value;
+    };
+    return { theme, toggleTheme };
+  },
+});
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+#app {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $gray;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: $dark;
+  &.dark {
+    background: $dark;
+    color: $dark-font;
+    a {
+      color: $dark-font;
     }
   }
 }
+
+.main {
+  flex-grow: 1;
+}
+
+a {
+  color: $dark;
+}
+
 </style>

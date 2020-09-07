@@ -1,0 +1,43 @@
+@mixin border-top-right-radius($size) {
+  border-top-right-radius: $size;
+};
+
+@mixin border-top-left-radius($size) {
+  border-top-left-radius: $size;
+};
+
+@mixin border-bottom-right-radius($size) {
+  border-bottom-right-radius: $size;
+};
+
+@mixin border-bottom-left-radius($size) {
+  border-bottom-left-radius: $size;
+};
+
+@mixin border-radius($size) {
+  border-radius: $size;
+};
+
+@mixin make-col($grid, $size) {
+  $result: 100% / ($grid / $size);
+  max-width: $result;
+  flex: 0 0 $result;
+  width: 100%;
+}
+
+@function make-container($target, $container-max-widths) {
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    @if ($target == $breakpoint) {
+      @return  $container-max-width * 1;
+    }
+  }
+  @return 100%;
+}
+
+@for $i from 1 through $grid {
+  .col-#{$i} {
+    @include make-col($grid, $i);
+  }
+}
+
+

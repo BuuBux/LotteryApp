@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <section class="c-section__wrapper">
+    <home-content-component />
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { defineComponent } from '@vue/composition-api';
+import HomeContentComponent from '@/components/HomeContentComponent.vue'; // @ is an alias to /src
 
-@Component({
+export default defineComponent({
+  name: 'HomePage',
   components: {
-    HelloWorld,
+    HomeContentComponent,
   },
-})
-export default class Home extends Vue {}
+});
 </script>
+
+<style scoped lang="scss">
+  .c-section {
+    &__wrapper {
+    }
+  }
+</style>
