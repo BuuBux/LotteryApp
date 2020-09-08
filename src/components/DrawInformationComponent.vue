@@ -60,6 +60,7 @@ export default defineComponent({
   .c-information {
     &__wrapper {
       text-align: center;
+      margin: 0 0 25px 0;
     }
     &__header {
       font: font(32, 48, 'light');

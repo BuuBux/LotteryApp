@@ -4,6 +4,7 @@
     <div v-if="error" class="c-dates__errors"> {{error}}} </div>
     <ul v-if="result" class="c-dates__list">
       <li
+        class="c-dates__element"
         :class="{ 'active' : selectedDate === draw.date }"
         v-for="draw in result.drawDates.draws"
         @click="selectNewDate(draw.date)"
@@ -75,6 +76,22 @@ export default defineComponent({
         justify-content: space-between;
       }
     }
+    &__element {
+      transition: color 0.2s ease-in-out;
+      &:not(:first-child) {
+        margin: 5px 0 0 0;
+      }
+      padding: 5px;
+      &:hover {
+        font-weight: 700;
+        color: $lemon;
+        cursor: pointer;
+      }
+      &.active {
+          color: $lemon;
+          font-weight: 700;
+        }
+    }
     &__header {
       font: font(18, 24, 'light');
       text-align: center;
@@ -82,14 +99,7 @@ export default defineComponent({
     &__list {
       list-style: none;
       text-align: center;
-      margin-top: 25px;
-      li {
-        &.active {
-          color: $lemon;
-          font-weight: 700;
-        }
-        margin: 0 0 5px 0;
-      }
+      margin: 25px 0;
     }
     &__buttons {
       text-align: center;

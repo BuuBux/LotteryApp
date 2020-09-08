@@ -1,7 +1,7 @@
 .c-btn {
     padding: 10px 25px;
     display: inline-block;
-    margin: 25px auto;
+    margin: 0 auto;
     background: $lemon;
     transition: transform 0.2s ease-in-out;
     text-decoration: none;
@@ -10,6 +10,7 @@
     @include border-radius(14px);
     &:hover {
         transform: scale(0.98);
+        cursor: pointer
     }
 }
 
