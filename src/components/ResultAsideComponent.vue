@@ -1,20 +1,22 @@
 <template>
-  <div class="c-panel c-dates__wrapper">
-    <h2 class="c-dates__header"> Check results for other dates </h2>
-    <div v-if="error" class="c-dates__errors"> {{error}}} </div>
-    <ul v-if="result" class="c-dates__list">
-      <li
-        class="c-dates__element"
-        :class="{ 'active' : selectedDate === draw.date }"
-        v-for="draw in result.drawDates.draws"
-        @click="selectNewDate(draw.date)"
-        :key="draw.date.split(' ').join('')"> {{ draw.date }} </li>
-    </ul>
-    <div class="c-dates__buttons">
-      <button v-if="!loading" class="c-btn" @click="loadMoreDates(5)">
-          Load more dates
-      </button>
-      <loading-spinner-component v-else />
+  <div class="c-dates__wrapper">
+    <div class="c-panel">
+      <h2 class="c-dates__header"> Check results for other dates </h2>
+      <div v-if="error" class="c-dates__errors"> {{error}}} </div>
+      <ul v-if="result" class="c-dates__list">
+        <li
+          class="c-dates__element"
+          :class="{ 'active' : selectedDate === draw.date }"
+          v-for="draw in result.drawDates.draws"
+          @click="selectNewDate(draw.date)"
+          :key="draw.date.split(' ').join('')"> {{ draw.date }} </li>
+      </ul>
+      <div class="c-dates__buttons">
+        <button v-if="!loading" class="c-btn" @click="loadMoreDates(5)">
+            Load more dates
+        </button>
+        <loading-spinner-component v-else />
+      </div>
     </div>
   </div>
 </template>
@@ -26,10 +28,10 @@ import {
 import { useQuery } from '@vue/apollo-composable';
 import { GET_DRAWS_DATE } from '@/schemas/queries';
 import DrawsDate, { DrawsDateVariables } from '@/types/drawsTypes';
-import LoadingSpinnerComponent from '@/components/LoadingSpinnerComponent.vue';
+import LoadingSpinnerComponent from '@/components/utils/LoadingSpinnerComponent.vue';
 
 export default defineComponent({
-  name: 'DrawsDates',
+  name: 'ResultAside',
   components: {
     LoadingSpinnerComponent,
   },

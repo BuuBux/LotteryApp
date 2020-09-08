@@ -1,7 +1,9 @@
 <template>
-  <section class="c-home__wrapper">
-    <home-content-component />
-  </section>
+  <container-component>
+    <row-component class="c-home__wrapper">
+      <home-content-component />
+    </row-component>
+  </container-component>
 </template>
 
 <script lang="ts">
@@ -17,7 +19,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-  .c-home__wrapper {
-    @include centering;
+  .c-home {
+    &__wrapper {
+      @include centering;
+    }
   }
 </style>

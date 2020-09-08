@@ -1,29 +1,31 @@
 <template>
-  <div class="c-panel c-numbers__wrapper">
-    <loading-spinner-component v-if="loading" />
-    <div v-if="error" class="c-number__errors">
-      {{ error }}
-    </div>
-    <div v-if="result && !loading" class="c-numbers__section">
-      <div
-        v-for="draw in result.draw.draws"
-        :key="`${draw.numbers.join('')}${new Date().getTime()}`"
-        class="c-numbers__element">
-        <h4 class="c-numbers__header" > {{draw.seo.title}} </h4>
-        <h6 class="c-numbers__date"> {{draw.date}} </h6>
-        <div class="c-numbers__balls">
-          <p class="c-numbers__headline"> Winning numbers </p>
-          <span
-            class="c-numbers__ball"
-            :key="number"
-            v-for="number in draw.numbers"> {{ number }} </span>
-        </div>
-        <div class="c-numbers__balls">
-          <p class="c-numbers__headline"> Additional numbers</p>
-          <span
-            class="c-numbers__ball c-numbers__ball--additional"
-            :key="number"
-            v-for="number in draw.additionalNumbers"> {{ number }} </span>
+  <div class="c-numbers__wrapper">
+    <div class="c-panel">
+      <loading-spinner-component v-if="loading" />
+      <div v-if="error" class="c-number__errors">
+        {{ error }}
+      </div>
+      <div v-if="result && !loading" class="c-numbers__section">
+        <div
+          v-for="draw in result.draw.draws"
+          :key="`${draw.numbers.join('')}${new Date().getTime()}`"
+          class="c-numbers__element">
+          <h4 class="c-numbers__header" > {{draw.seo.title}} </h4>
+          <h6 class="c-numbers__date"> {{draw.date}} </h6>
+          <div class="c-numbers__balls">
+            <p class="c-numbers__headline"> Winning numbers </p>
+            <span
+              class="c-numbers__ball"
+              :key="number"
+              v-for="number in draw.numbers"> {{ number }} </span>
+          </div>
+          <div class="c-numbers__balls">
+            <p class="c-numbers__headline"> Additional numbers</p>
+            <span
+              class="c-numbers__ball c-numbers__ball--additional"
+              :key="number"
+              v-for="number in draw.additionalNumbers"> {{ number }} </span>
+          </div>
         </div>
       </div>
     </div>
@@ -35,10 +37,10 @@ import { defineComponent } from '@vue/composition-api';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_DRAWS_RESULTS } from '@/schemas/queries';
 import { DrawsResults, DrawsResultsVariables } from '@/types/drawsTypes';
-import LoadingSpinnerComponent from '@/components/LoadingSpinnerComponent.vue';
+import LoadingSpinnerComponent from '@/components/utils/LoadingSpinnerComponent.vue';
 
 export default defineComponent({
-  name: 'ShowDrawResult',
+  name: 'ResultArticle',
   components: {
     LoadingSpinnerComponent,
   },

@@ -6,10 +6,10 @@
       </div>
     </row-component>
     <row-component>
-        <div
-        v-for="information in informations"
-        :key="information.title"
-        class="col-6 c-information__item">
+      <div
+      v-for="information in informations"
+      :key="information.title"
+      class="col-6 c-information__item">
         <img
           class="c-information__image"
           :alt="information.title"
@@ -72,7 +72,9 @@ export default defineComponent({
     }
     &__item {
       margin: 15px 0;
-      @include make-col($grid, 3);
+      @media (min-width: 991px) {
+        @include make-col($grid, 3);
+      }
     }
   }
 </style>

@@ -3,5 +3,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '../styles/components/spinner';
+  @import '../../styles/components/spinner';
 </style>
