@@ -34,7 +34,7 @@
 import { defineComponent } from '@vue/composition-api';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_DRAWS_RESULTS } from '@/schemas/queries';
-import { DrawsResults } from '@/types/drawsTypes';
+import { DrawsResults, DrawsResultsVariables } from '@/types/drawsTypes';
 import LoadingSpinnerComponent from '@/components/LoadingSpinnerComponent.vue';
 
 export default defineComponent({
@@ -58,7 +58,7 @@ export default defineComponent({
         date: props.selectedDate,
         limit: 1,
         type: props.type,
-      }),
+      }) as DrawsResultsVariables,
     );
     return { result, loading, error };
   },

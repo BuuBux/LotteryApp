@@ -1,3 +1,5 @@
+import { Ref } from '@vue/composition-api';
+
 export interface VisibleErrors {
   idents: string[];
   messages: string[];
@@ -60,4 +62,15 @@ export interface DrawsResults extends ErrorHandling {
   draw: {
     draws: ModelDraw[];
   }
+}
+
+export interface DrawsDateVariables {
+  limit: Ref<number>;
+  type: string;
+}
+
+export interface DrawsResultsVariables {
+  limit: number;
+  date: string;
+  type: string;
 }

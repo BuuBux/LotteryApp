@@ -25,7 +25,7 @@ import {
 } from '@vue/composition-api';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_DRAWS_DATE } from '@/schemas/queries';
-import DrawsDate from '@/types/drawsTypes';
+import DrawsDate, { DrawsDateVariables } from '@/types/drawsTypes';
 import LoadingSpinnerComponent from '@/components/LoadingSpinnerComponent.vue';
 
 export default defineComponent({
@@ -42,7 +42,7 @@ export default defineComponent({
   setup(props, ctx) {
     const { type } = props;
     const limit = ref(1);
-    const { result, loading, error } = useQuery<DrawsDate>(
+    const { result, loading, error } = useQuery<DrawsDate, DrawsDateVariables>(
       GET_DRAWS_DATE, { limit, type },
     );
 
