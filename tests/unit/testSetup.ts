@@ -1,17 +1,30 @@
 import { createLocalVue } from '@vue/test-utils';
-import CompositionApi from '@vue/composition-api';
+import VueCompositionApi, { provide } from '@vue/composition-api';
 import RowComponent from '@/components/utils/RowComponent.vue';
 import ContainerComponent from '@/components/utils/ContainerComponent.vue';
-import VueRouter from 'vue-router';
+import ApolloClient from 'apollo-boost';
+import { DefaultApolloClient } from '@vue/apollo-composable';
+import router from '@/router';
+import 'cross-fetch/polyfill';
+const apolloClient = new ApolloClient({
+  uri: 'https://www.lottohelden.com/graphql',
+});
 
 const localVue = createLocalVue();
-const router = new VueRouter();
-localVue.use(VueRouter);
-localVue.component('container-component', ContainerComponent);
-localVue.component('row-component', RowComponent);
-localVue.use(CompositionApi);
+
+const app = new localVue({
+  setup() {
+    provide(DefaultApolloClient, apolloClient);
+  },
+})
+
+localVue.use(VueCompositionApi);
 
 export default {
-  localVue,
+  app,
+  stubs: {
+    'row-component': RowComponent,
+    'container-component': ContainerComponent,
+  },
   router,
 };

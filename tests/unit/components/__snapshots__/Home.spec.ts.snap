@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing HomeContentComponent.vue Create a snapshot 1`] = `
+<div class="c-welcome__wrapper col-12"><img src="../assets/welcome.svg" alt="Welcome banner" title="Welcome" class="img-fluid c-welcome__image">
+  <h2 class="c-welcome__header"> You could be our next big winner! </h2>
+  <div class="col-12 c-information__wrapper c-panel">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="c-information__header"> Lottery information </h3>
+      </div>
+    </div>
+    <div class="row"></div>
+  </div> <a href="/result" class="c-btn c-welcome__button"> Show me result </a>
+</div>
+`;

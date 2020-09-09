@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import {
-  defineComponent, ref, watch, Ref,
+  defineComponent, ref, watch,
 } from '@vue/composition-api';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_DRAWS_DATE } from '@/schemas/queries';
@@ -44,15 +44,19 @@ export default defineComponent({
   setup(props, ctx) {
     const { type } = props;
     const limit = ref(1);
+    const selectedDate = ref('');
     const { result, loading, error } = useQuery<DrawsDate, DrawsDateVariables>(
       GET_DRAWS_DATE, { limit, type },
     );
 
-    const selectedDate: Ref<string> = ref<string>('');
-    selectedDate.value = result.value?.drawDates?.draws[0].date;
     const selectNewDate = (newDate: string) => { selectedDate.value = newDate; };
     const loadMoreDates = (extendBy: number) => { limit.value += extendBy; };
-    watch(result, (value) => { selectedDate.value = value.drawDates.draws[0].date; });
+
+    watch(result, (value) => {
+      if (selectedDate.value === '') {
+        selectedDate.value = value.drawDates.draws[0].date;
+      }
+    });
     watch(selectedDate, (value) => { ctx.emit('selectedDate', value); });
 
     return {

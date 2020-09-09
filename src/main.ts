@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import ApolloClient from 'apollo-boost';
-import VueCompositionAPI, { provide } from '@vue/composition-api';
+import VueCompositionApi, { provide } from '@vue/composition-api';
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import RowComponent from '@/components/utils/RowComponent.vue';
 import ContainerComponent from '@/components/utils/ContainerComponent.vue';
@@ -11,7 +11,7 @@ const apolloClient = new ApolloClient({
   uri: 'https://www.lottohelden.com/graphql',
 });
 
-Vue.use(VueCompositionAPI);
+Vue.use(VueCompositionApi);
 Vue.component('row-component', RowComponent);
 Vue.component('container-component', ContainerComponent);
 Vue.config.productionTip = false;
