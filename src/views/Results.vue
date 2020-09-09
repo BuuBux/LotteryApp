@@ -2,7 +2,9 @@
   <container-component>
     <row-container>
       <result-aside-component
-        @selectedDate="updateDate" :type="lotteryType"
+        @selectedDate="updateDate"
+        :type="lotteryType"
+        :selected-date="selectedDate"
         class="c-result__aside col-12" />
       <result-article-component
         :type="lotteryType"

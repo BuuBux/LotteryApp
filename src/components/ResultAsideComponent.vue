@@ -23,11 +23,11 @@
 
 <script lang="ts">
 import {
-  defineComponent, ref, watch,
+  defineComponent, onMounted, ref, watch,
 } from '@vue/composition-api';
-import { useQuery } from '@vue/apollo-composable';
+import { useQuery, useResult } from '@vue/apollo-composable';
 import { GET_DRAWS_DATE } from '@/schemas/queries';
-import DrawsDate, { DrawsDateVariables } from '@/types/drawsTypes';
+import DrawsDate, { DrawsDateVariables, ModelDrawDates } from '@/types/drawsTypes';
 import LoadingSpinnerComponent from '@/components/utils/LoadingSpinnerComponent.vue';
 
 export default defineComponent({
@@ -40,24 +40,48 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    selectedDate: {
+      type: String,
+      required: true,
+    },
   },
   setup(props, ctx) {
     const { type } = props;
     const limit = ref(1);
-    const selectedDate = ref('');
     const { result, loading, error } = useQuery<DrawsDate, DrawsDateVariables>(
       GET_DRAWS_DATE, { limit, type },
     );
 
-    const selectNewDate = (newDate: string) => { selectedDate.value = newDate; };
+    const selectNewDate = (newDate: string) => {
+      ctx.emit('selectedDate', newDate);
+    };
+
     const loadMoreDates = (extendBy: number) => { limit.value += extendBy; };
 
     watch(result, (value) => {
-      if (selectedDate.value === '') {
-        selectedDate.value = value.drawDates.draws[0].date;
+      if (props.selectedDate === '') {
+        ctx.emit('selectedDate', value.drawDates.draws[0].date);
       }
     });
-    watch(selectedDate, (value) => { ctx.emit('selectedDate', value); });
+
+    onMounted(async () => {
+      const dateResultPromise = new Promise((resolve, reject) => {
+        const res = useResult(result, null, (data) => data.drawDates.draws);
+        if (res.value !== null) {
+          resolve(res.value);
+        } else {
+          setTimeout(() => {
+            if (res.value !== null) {
+              resolve(res.value);
+            } else {
+              reject(new Error('useResult didnt return nothing'));
+            }
+          }, 500);
+        }
+      });
+      const response = await (dateResultPromise as Promise<ModelDrawDates[]>);
+      ctx.emit('selectedDate', response[0].date);
+    });
 
     return {
       result,
@@ -66,7 +90,6 @@ export default defineComponent({
       limit,
       selectNewDate,
       loadMoreDates,
-      selectedDate,
     };
   },
 });
