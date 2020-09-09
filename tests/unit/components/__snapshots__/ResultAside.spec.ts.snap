@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing HomeContentComponent.vue Create a snapshot 1`] = `
+<div class="c-dates__wrapper">
+  <div class="c-panel">
+    <h2 class="c-dates__header"> Check results for other dates </h2>
+    <!---->
+    <!---->
+    <div class="c-dates__buttons"><button class="c-btn">
+        Load more dates
+      </button></div>
+  </div>
+</div>
+`;

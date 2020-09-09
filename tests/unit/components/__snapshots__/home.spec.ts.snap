@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing HomeContentComponent.vue Create a snapshot 1`] = `
+<div class="c-welcome__wrapper col-12"><img src="../assets/welcome.svg" alt="Welcome banner" title="Welcome" class="img-fluid c-welcome__image">
+  <h2 class="c-welcome__header"> You could be our next big winner! </h2>
+  <div class="col-12 c-information__wrapper c-panel">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="c-information__header"> Lottery information </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 c-information__item"><img alt="Rules:" title="Rules:" src="" class="c-information__image">
+        <h4 class="c-information__title"> Rules: </h4>
+        <p class="c-information__text"> 5 out of 50 plus 2 out of 10 Euro numbers </p>
+      </div>
+      <div class="col-6 c-information__item"><img alt="Drawing:" title="Drawing:" src="" class="c-information__image">
+        <h4 class="c-information__title"> Drawing: </h4>
+        <p class="c-information__text"> Every Friday at 20:00 CET </p>
+      </div>
+      <div class="col-6 c-information__item"><img alt="Winning odds:" title="Winning odds:" src="" class="c-information__image">
+        <h4 class="c-information__title"> Winning odds: </h4>
+        <p class="c-information__text"> 1 in 95 million </p>
+      </div>
+      <div class="col-6 c-information__item"><img alt="Jackpot amount:" title="Jackpot amount:" src="" class="c-information__image">
+        <h4 class="c-information__title"> Jackpot amount: </h4>
+        <p class="c-information__text"> Up to 90 million € jackpot </p>
+      </div>
+    </div>
+  </div> <a href="#/result" class="c-btn c-welcome__button"> Show me result </a>
+</div>
+`;

@@ -7,7 +7,9 @@
       class="img-fluid c-welcome__image" />
     <h2 class="c-welcome__header"> You could be our next big winner! </h2>
     <draw-information-component />
-    <router-link to="/result" class="c-btn"> Show me result </router-link>
+    <router-link
+      to="/result"
+      class="c-btn c-welcome__button"> Show me result </router-link>
   </div>
 </template>
 
@@ -35,10 +37,10 @@ export default defineComponent({
       margin: 25px 0;
       text-align: center;
     }
-  }
-  .c-btn {
-    max-width: 225px;
-    display: block;
-    text-align: center;
+    &__button {
+      max-width: 225px;
+      display: block;
+      text-align: center;
+    }
   }
 </style>
