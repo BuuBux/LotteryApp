@@ -4,9 +4,9 @@ import testSetup from '../testSetup';
 
 const propsData = { type: 'eurojackpot' };
 const createWrapper = () => mount(ResultArticle, {
-    ...testSetup,
-    propsData,
-  });
+  ...testSetup,
+  propsData,
+});
 
 describe('Testing ResultArticleComponent.vue', () => {
   it('Create a snapshot', () => {

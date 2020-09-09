@@ -6,11 +6,10 @@ import VueRouter from 'vue-router';
 
 const localVue = createLocalVue();
 const router = new VueRouter();
-
-localVue.use(CompositionApi);
 localVue.use(VueRouter);
 localVue.component('container-component', ContainerComponent);
 localVue.component('row-component', RowComponent);
+localVue.use(CompositionApi);
 
 export default {
   localVue,

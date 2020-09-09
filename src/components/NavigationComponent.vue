@@ -2,10 +2,13 @@
   <nav class="c-nav">
     <ul class="c-nav__list">
       <li class="c-nav__item">
-        <router-link class="c-nav__link" to="/"> Home </router-link>
+        <router-link
+          class="c-nav__link c-nav__link--home" to="/"> Home </router-link>
       </li>
       <li class="c-nav__item">
-        <router-link class="c-nav__link" to="/result"> Lottery results </router-link>
+        <router-link
+          class="c-nav__link c-nav__link--result"
+          to="/result"> Lottery results </router-link>
       </li>
       <li class="c-nav__item c-nav__item--switch">
         <img
